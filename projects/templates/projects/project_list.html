@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block content %}
+  <h2>پروژه‌های من</h2>
+  <ul>
+    {% for project in projects %}
+      <li>
+        <a href="{% url 'project_detail' project.id %}">{{ project.title }}</a>
+      </li>
+    {% empty %}
+      <li>هنوز پروژه‌ای نداری!</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'project_create' %}">➕ پروژه جدید</a>
+{% endblock %}
