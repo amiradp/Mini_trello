@@ -15,6 +15,11 @@ def project_list(request):
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 
+def dashboard(request):
+    projects = Project.objects.filter(owner=request.user)
+    return render(request, 'projects/dashboard.html', {'projects': projects})
+
+
 @login_required
 def project_create(request):
     if request.method == 'POST':
@@ -34,8 +39,6 @@ def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk, owner=request.user)
     tasks = Task.objects.filter(project=project)
     return render(request, 'projects/project_detail.html', {'project': project, 'tasks': tasks})
-
-# projects/views.py
 
 
 @login_required

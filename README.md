@@ -1,94 +1,96 @@
-# 🧩 Mini Trello – Django-based Task Management App
+# 🗂️ Mini Trello – Django Project Manager
 
-Mini Trello is a simplified Trello clone built with Django. It allows users to organize their work using Boards, Lists, and Cards, collaborate with others, and manage tasks visually.
-
----
-
-## 📸 Demo
-
-👉 [Live Demo](https://your-deployed-url.com)
-
-> 🔐 Demo credentials:  
-> Username: `demo_user`  
-> Password: `demopassword`
+A minimal Trello-like task management app built with Django.  
+This project allows users to create and manage projects, add tasks with deadlines, track task statuses, and securely manage their own workspace.
 
 ---
 
-## 🎯 Features
+## 🚀 Features
 
-- ✅ User registration, login, logout, password reset
-- ✅ Create and manage Boards, Lists, and Cards
-- ✅ Invite members to boards with role-based access (owner, editor, viewer)
-- ✅ Drag & Drop cards between lists
-- ✅ Card details: description, checklist, deadline, labels, comments
-- ✅ Responsive UI with clean custom CSS
-- ✅ REST API for Boards and Cards (WIP)
-- ✅ Real-time updates with WebSockets (optional)
-
----
-
-## 🏗️ Tech Stack
-
-| Layer         | Tech                              |
-|---------------|-----------------------------------|
-| Backend       | Django, Django REST Framework     |
-| Frontend      | Django Templates / (React optional) |
-| Database      | PostgreSQL / SQLite (dev)         |
-| Auth          | Django built-in auth system       |
-| Realtime (opt)| Django Channels                   |
-| Deployment    | Render / Railway / Heroku         |
+- 🔐 User authentication using `django-allauth`
+- 👤 Custom user model
+- 📁 Project & Task management
+- ✅ Task status updates (TODO / IN_PROGRESS / DONE)
+- 📆 Task deadlines
+- 🔒 Per-user access control (each user sees only their own projects/tasks)
+- ⚙️ Admin panel customization
+- 🧩 Clean, reusable Django template structure
 
 ---
 
-## ⚙️ Installation
+## 🧰 Built With
 
-1. **Clone the repo**
+- Python 3.x  
+- Django  
+- Django Allauth  
+- SQLite (development)  
+- HTML / CSS  
+- Git & GitHub
 
+---
+
+## 📸 Screenshots
+
+> *(Add screenshots here later if you want to showcase the UI)*
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/mini-trello.git
+git clone https://github.com/your-username/mini-trello.git
 cd mini-trello
 
 
-2.Create virtual environment & install dependencies
+2. Create and activate a virtual environment:
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-python -m venv env
-source env/bin/activate   # or env\Scripts\activate on Windows
+
+3. Install dependencies:
 pip install -r requirements.txt
 
-3.Run migrations & start the server
 
+
+4. Apply migrations and create superuser:
 python manage.py migrate
+python manage.py createsuperuser
+
+
+5. Run the development server:
 python manage.py runserver
 
-4.Access app
-
-http://127.0.0.1:8000/
+Visit http://127.0.0.1:8000 in your browser.
 
 
-
-📁 Project Structure
-
-mini-trello/
-├── core/           # User auth & profiles
-├── boards/         # Boards, Lists, Cards models & logic
-├── templates/      # HTML templates
-├── static/         # Custom CSS & JS
-├── api/ (opt)      # DRF APIs
-├── requirements.txt
-└── README.md
+🧪 Testing (optional)
+You can add and run unit tests using Django's test framework:
+python manage.py test
 
 
-🚀 Upcoming Features
- REST API for full frontend integration
+📌 Roadmap
+ User authentication with django-allauth
 
- WebSocket-based live sync (Django Channels)
+ Project/task models
 
- Google OAuth login
+ CRUD views for tasks
 
- Email notifications for board activity
+ Access control
 
-🧠 Author
-Made with ❤️ by Your Name
+ UI Styling with Bootstrap
 
-📜 License
+ Unit tests
+
+ Deployment to production
+
+📄 License
 This project is licensed under the MIT License.
+
+🙌 Acknowledgements
+Django documentation
+
+Trello for design inspiration
+
+Django Allauth
+
