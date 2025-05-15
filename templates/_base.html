@@ -1,63 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en" class="bg-gray-50 text-gray-900">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}مدیریت پروژه{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-            background-color: #f7f7f7;
-            color: #333;
-        }
-        header {
-            margin-bottom: 30px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
-        }
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #0056b3;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 0.8em;
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Mini Trello{% endblock %}</title>
+  <!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
+
 <body>
-    <header>
-        <h1>مدیریت پروژه</h1>
-        <nav>
-            <a href="{% url 'project_list' %}">📁 پروژه‌ها</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'account_logout' %}">🚪 خروج</a>
-            {% else %}
-                <a href="{% url 'account_login' %}">ورود</a>
-                <a href="{% url 'account_signup' %}">ثبت‌نام</a>
-            {% endif %}
-        </nav>
-    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+  <!-- Navbar -->
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    {% comment %} <a href="{% url 'dashboard' %}" class="text-xl font-bold text-blue-600">MiniTrello</a> {% endcomment %}
+    <div class="space-x-4">
+      {% if user.is_authenticated %}
+        <span class="text-sm text-gray-700">Hello, {{ user.username }}</span>
+        <a href="{% url 'account_logout' %}" class="text-sm text-red-500 hover:underline">Logout</a>
+      {% else %}
+        <a href="{% url 'account_login' %}" class="text-sm text-blue-500 hover:underline">Login</a>
+        <a href="{% url 'account_signup' %}" class="text-sm text-green-500 hover:underline">Signup</a>
+      {% endif %}
     </div>
+  </nav>
+    <div class="container mt-5">
+        <h1 class="text-primary">Bootstrap وصل شد!</h1>
+    </div>
+  <!-- Content -->
+  <main class="max-w-4xl mx-auto mt-8 p-4 bg-white rounded-2xl shadow">
+    {% block content %}
+    {% endblock %}
+  </main>
 
-    <footer>
-        <p>ساخته شده با Django - Mini Trello</p>
-    </footer>
 </body>
 </html>
