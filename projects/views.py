@@ -1,8 +1,8 @@
 # projects/views.py
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+
 
 from .models import Task
 from .forms import ProjectForm
@@ -15,6 +15,7 @@ def project_list(request):
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 
+@login_required
 def dashboard(request):
     projects = Project.objects.filter(owner=request.user)
     return render(request, 'projects/dashboard.html', {'projects': projects})
@@ -89,3 +90,16 @@ def task_delete(request, task_id):
         return redirect('project_detail', pk=project_id)
     return render(request, 'projects/task_confirm_delete.html', {'task': task})
 
+
+@login_required
+def create_project(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.owner = request.user
+            project.save()
+            return redirect('dashboard')
+    else:
+        form = ProjectForm()
+    return render(request, 'projects/create_project.html', {'form': form})
